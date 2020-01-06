@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <title>Arrays</title>
+ <!-- Latest compiled and minified CSS -->
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+ <div class="container">
+  <h1><a href=".">blog</a></h1>
+ </div>
+</head>
+<body>
+ <div class="container">
+<div class="row">
+ <div class="col-md-8">
+  <h3>Arrays</h3>
+  <label>2019-12-06</label>
+  <p>An array is an object that contains objects of the same type; while lists can hold objects of varying types, arrays cannot [1].</p>
+<p>This post will provide some basic information about arrays related to their shape and dimensionality.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Some ways an array can be created are as follows:</span>
+
+<span class="c1"># Option 1: Converts a list to an array.</span>
+
+<span class="n">a1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Option 2:&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+
+<span class="c1"># Option 2: Creates an array of zeros.</span>
+
+<span class="n">a2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Option 1:&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="k">Option</span> <span class="mi">2</span><span class="p">:</span>
+<span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">]</span>
+<span class="k">Option</span> <span class="mi">1</span><span class="p">:</span>
+<span class="p">[[</span><span class="mi">0</span><span class="p">.]</span>
+ <span class="p">[</span><span class="mi">0</span><span class="p">.]</span>
+ <span class="p">[</span><span class="mi">0</span><span class="p">.]</span>
+ <span class="p">[</span><span class="mi">0</span><span class="p">.]</span>
+ <span class="p">[</span><span class="mi">0</span><span class="p">.]</span>
+ <span class="p">[</span><span class="mi">0</span><span class="p">.]]</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># After creating an array with Numpy, the shape can be called.</span>
+
+<span class="c1"># The shape of a one-dimensional array is the number of objects in it.</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># The shape of a two-dimensional array has the form of (n,m), indicating n rows and m columns [2].</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">6</span><span class="p">,)</span>
+<span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Array 'a1' is one-dimensional since there are 5 numbers (i.e. the shape can be described by one number).</p>
+<p>Array 'a2' is two-dimesional since there are 6 rows and 1 column.</p>
+<div class="highlight"><pre><span></span><span class="c1"># Indexing an object in a one-dimensional array will return the number.</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;One-dimensional array:&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+
+<span class="c1"># Indexing an object in a two-dimensional array will return a one-dimensional array.</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Two-dimensional array:&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a2</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">One</span><span class="o">-</span><span class="n">dimensional</span> <span class="nb">array</span><span class="p">:</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="n">Two</span><span class="o">-</span><span class="n">dimensional</span> <span class="nb">array</span><span class="p">:</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">.]</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">.]</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">.]</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">.]</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">.]</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">.]</span>
+</pre></div>
+
+
+<p>Below, array 'b' will be created as a 1D object and then converted to a 2D object.</p>
+<div class="highlight"><pre><span></span><span class="c1"># Original shape of array &#39;b&#39;.</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+
+<span class="c1"># Call the shape.</span>
+
+<span class="n">b</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">6</span><span class="p">,)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Reshape the object by calling np.reshape.</span>
+<span class="c1"># Array &#39;b&#39; can now be described as having 6 rows and 1 column.</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">b</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="nb">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">6</span><span class="p">]])</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Indexing each row will print a 1D array from each row. </span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="k">[1]</span>
+<span class="k">[2]</span>
+<span class="k">[3]</span>
+<span class="k">[4]</span>
+<span class="k">[5]</span>
+<span class="k">[6]</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Array &#39;c&#39; below is a 1D array consisting of 6 elements and described with 1 number.</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+<span class="n">c</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">6</span><span class="p">,)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># This can be transformed to a 2D array and be expressed with 2 numbers (rows and columns).</span>
+
+<span class="n">c</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="nb">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">6</span><span class="p">]])</span>
+</pre></div>
+
+
+<p>Alternatively, if the number of desired columns is known, an array can be reshaped with (-1,m).</p>
+<p>'-1' indicates that NumPy will discern how to distribute the objects in that row in order to create the m number of columns requested [2].</p>
+<div class="highlight"><pre><span></span><span class="c1"># Below a reshape for a one column array is requested.</span>
+
+<span class="n">c</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="nb">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">6</span><span class="p">]])</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Shape of reshaped array.</span>
+
+<span class="n">c</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The opposite stands true with (n,-1) where n rows can be created, distributing the column elements as necessary [2].</p>
+<div class="highlight"><pre><span></span><span class="c1"># Below a reshape for a one row array is requested.</span>
+
+<span class="n">c</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="nb">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Shape of reshaped array.</span>
+
+<span class="n">c</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Arrays can be 2D with a variety of shapes beyond one column.</span>
+<span class="c1"># Below is a reshape request with 3 rows and 2 columns.</span>
+
+<span class="n">c</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="nb">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Below is a reshape request for 2 rows and 3 columns.</span>
+<span class="c1"># Even though there are three objects in each row (3 columns), the dimension is still 2.</span>
+
+<span class="n">c</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="nb">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># As noted earlier, array &#39;c&#39; can be reshaped with -1 with the other row or column numbers known.</span>
+
+<span class="n">c</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="nb">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># If array &#39;c&#39; is then changed to a 2D shape and then indexed, the output will be a 1D array.</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="nb">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Again reshaping with -1 in the column position.</span>
+
+<span class="n">c</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="nb">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Reshape and index.</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="nb">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+</pre></div>
+
+
+<p>When using arrays in scikit-learn with LinearRegressions, the objects called must have the proper shape [3].</p>
+<div class="highlight"><pre><span></span><span class="c1"># LinearRegression example.</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">5</span><span class="p">,)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+
+<span class="nv">ValueError</span>                                <span class="nv">Traceback</span> <span class="ss">(</span><span class="nv">most</span> <span class="nv">recent</span> <span class="k">call</span> <span class="nl">last</span><span class="ss">)</span>
+
+<span class="o">&lt;</span><span class="nv">ipython</span><span class="o">-</span><span class="nv">input</span><span class="o">-</span><span class="mi">21</span><span class="o">-</span><span class="nv">a0e944b0988f</span><span class="o">&gt;</span> <span class="nv">in</span> <span class="o">&lt;</span><span class="nv">module</span><span class="o">&gt;</span>
+      <span class="mi">1</span> <span class="nv">model</span> <span class="o">=</span> <span class="nv">LinearRegression</span><span class="ss">()</span>
+<span class="o">----&gt;</span> <span class="mi">2</span> <span class="nv">model</span>.<span class="nv">fit</span><span class="ss">(</span><span class="nv">X</span>,<span class="nv">y</span><span class="ss">)</span>
+
+
+<span class="o">~/</span><span class="nv">opt</span><span class="o">/</span><span class="nv">anaconda3</span><span class="o">/</span><span class="nv">lib</span><span class="o">/</span><span class="nv">python3</span>.<span class="mi">7</span><span class="o">/</span><span class="nv">site</span><span class="o">-</span><span class="nv">packages</span><span class="o">/</span><span class="nv">sklearn</span><span class="o">/</span><span class="nv">linear_model</span><span class="o">/</span><span class="nv">base</span>.<span class="nv">py</span> <span class="nv">in</span> <span class="nv">fit</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">X</span>, <span class="nv">y</span>, <span class="nv">sample_weight</span><span class="ss">)</span>
+    <span class="mi">461</span>         <span class="nv">n_jobs_</span> <span class="o">=</span> <span class="nv">self</span>.<span class="nv">n_jobs</span>
+    <span class="mi">462</span>         <span class="nv">X</span>, <span class="nv">y</span> <span class="o">=</span> <span class="nv">check_X_y</span><span class="ss">(</span><span class="nv">X</span>, <span class="nv">y</span>, <span class="nv">accept_sparse</span><span class="o">=</span>[<span class="s1">&#39;</span><span class="s">csr</span><span class="s1">&#39;</span>, <span class="s1">&#39;</span><span class="s">csc</span><span class="s1">&#39;</span>, <span class="s1">&#39;</span><span class="s">coo</span><span class="s1">&#39;</span>],
+<span class="o">--&gt;</span> <span class="mi">463</span>                          <span class="nv">y_numeric</span><span class="o">=</span><span class="nv">True</span>, <span class="nv">multi_output</span><span class="o">=</span><span class="nv">True</span><span class="ss">)</span>
+    <span class="mi">464</span> 
+    <span class="mi">465</span>         <span class="k">if</span> <span class="nv">sample_weight</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">None</span> <span class="nv">and</span> <span class="nv">np</span>.<span class="nv">atleast_1d</span><span class="ss">(</span><span class="nv">sample_weight</span><span class="ss">)</span>.<span class="nv">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span>:
+
+
+<span class="o">~/</span><span class="nv">opt</span><span class="o">/</span><span class="nv">anaconda3</span><span class="o">/</span><span class="nv">lib</span><span class="o">/</span><span class="nv">python3</span>.<span class="mi">7</span><span class="o">/</span><span class="nv">site</span><span class="o">-</span><span class="nv">packages</span><span class="o">/</span><span class="nv">sklearn</span><span class="o">/</span><span class="nv">utils</span><span class="o">/</span><span class="nv">validation</span>.<span class="nv">py</span> <span class="nv">in</span> <span class="nv">check_X_y</span><span class="ss">(</span><span class="nv">X</span>, <span class="nv">y</span>, <span class="nv">accept_sparse</span>, <span class="nv">accept_large_sparse</span>, <span class="nv">dtype</span>, <span class="nv">order</span>, <span class="nv">copy</span>, <span class="nv">force_all_finite</span>, <span class="nv">ensure_2d</span>, <span class="nv">allow_nd</span>, <span class="nv">multi_output</span>, <span class="nv">ensure_min_samples</span>, <span class="nv">ensure_min_features</span>, <span class="nv">y_numeric</span>, <span class="nv">warn_on_dtype</span>, <span class="nv">estimator</span><span class="ss">)</span>
+    <span class="mi">717</span>                     <span class="nv">ensure_min_features</span><span class="o">=</span><span class="nv">ensure_min_features</span>,
+    <span class="mi">718</span>                     <span class="nv">warn_on_dtype</span><span class="o">=</span><span class="nv">warn_on_dtype</span>,
+<span class="o">--&gt;</span> <span class="mi">719</span>                     <span class="nv">estimator</span><span class="o">=</span><span class="nv">estimator</span><span class="ss">)</span>
+    <span class="mi">720</span>     <span class="k">if</span> <span class="nv">multi_output</span>:
+    <span class="mi">721</span>         <span class="nv">y</span> <span class="o">=</span> <span class="nv">check_array</span><span class="ss">(</span><span class="nv">y</span>, <span class="s1">&#39;</span><span class="s">csr</span><span class="s1">&#39;</span>, <span class="nv">force_all_finite</span><span class="o">=</span><span class="nv">True</span>, <span class="nv">ensure_2d</span><span class="o">=</span><span class="nv">False</span>,
+
+
+<span class="o">~/</span><span class="nv">opt</span><span class="o">/</span><span class="nv">anaconda3</span><span class="o">/</span><span class="nv">lib</span><span class="o">/</span><span class="nv">python3</span>.<span class="mi">7</span><span class="o">/</span><span class="nv">site</span><span class="o">-</span><span class="nv">packages</span><span class="o">/</span><span class="nv">sklearn</span><span class="o">/</span><span class="nv">utils</span><span class="o">/</span><span class="nv">validation</span>.<span class="nv">py</span> <span class="nv">in</span> <span class="nv">check_array</span><span class="ss">(</span><span class="nv">array</span>, <span class="nv">accept_sparse</span>, <span class="nv">accept_large_sparse</span>, <span class="nv">dtype</span>, <span class="nv">order</span>, <span class="nv">copy</span>, <span class="nv">force_all_finite</span>, <span class="nv">ensure_2d</span>, <span class="nv">allow_nd</span>, <span class="nv">ensure_min_samples</span>, <span class="nv">ensure_min_features</span>, <span class="nv">warn_on_dtype</span>, <span class="nv">estimator</span><span class="ss">)</span>
+    <span class="mi">519</span>                     <span class="s2">&quot;</span><span class="s">Reshape your data either using array.reshape(-1, 1) if </span><span class="s2">&quot;</span>
+    <span class="mi">520</span>                     <span class="s2">&quot;</span><span class="s">your data has a single feature or array.reshape(1, -1) </span><span class="s2">&quot;</span>
+<span class="o">--&gt;</span> <span class="mi">521</span>                     <span class="s2">&quot;</span><span class="s">if it contains a single sample.</span><span class="s2">&quot;</span>.<span class="nv">format</span><span class="ss">(</span><span class="nv">array</span><span class="ss">))</span>
+    <span class="mi">522</span> 
+    <span class="mi">523</span>         # <span class="nv">in</span> <span class="nv">the</span> <span class="nv">future</span> <span class="nv">np</span>.<span class="nv">flexible</span> <span class="nv">dtypes</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">handled</span> <span class="nv">like</span> <span class="nv">object</span> <span class="nv">dtypes</span>
+
+
+<span class="nv">ValueError</span>: <span class="nv">Expected</span> <span class="mi">2</span><span class="nv">D</span> <span class="nv">array</span>, <span class="nv">got</span> <span class="mi">1</span><span class="nv">D</span> <span class="nv">array</span> <span class="nv">instead</span>:
+<span class="nv">array</span><span class="o">=</span>[<span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span>].
+<span class="nv">Reshape</span> <span class="nv">your</span> <span class="nv">data</span> <span class="nv">either</span> <span class="nv">using</span> <span class="nv">array</span>.<span class="nv">reshape</span><span class="ss">(</span><span class="o">-</span><span class="mi">1</span>, <span class="mi">1</span><span class="ss">)</span> <span class="k">if</span> <span class="nv">your</span> <span class="nv">data</span> <span class="nv">has</span> <span class="nv">a</span> <span class="nv">single</span> <span class="nv">feature</span> <span class="nv">or</span> <span class="nv">array</span>.<span class="nv">reshape</span><span class="ss">(</span><span class="mi">1</span>, <span class="o">-</span><span class="mi">1</span><span class="ss">)</span> <span class="k">if</span> <span class="nv">it</span> <span class="nv">contains</span> <span class="nv">a</span> <span class="nv">single</span> <span class="nv">sample</span>.
+</pre></div>
+
+
+<p>This error above arises because the function expects a 2D array.</p>
+<p>The reshape prompt -- array.reshape(-1,1) -- indicates that the function would like the object to have two dimensions.</p>
+<p>Below are a few array reshape options (assuming X is already an array):</p>
+<p>Option 1:</p>
+<div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Option 2: </p>
+<div class="highlight"><pre><span></span><span class="n">model</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Reshaping using Option 1:</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">LinearRegression</span><span class="p">(</span><span class="n">copy_X</span><span class="o">=</span><span class="k">True</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="o">=</span><span class="k">True</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="k">None</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="k">False</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The array now has the proper shape to run the LinearRegression function.</p>
+<p>Sources:
+[1] https://docs.python.org/3/library/array.html
+[2] https://docs.scipy.org/doc/numpy/user/quickstart.html
+[3] https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html </p>
+ </div>
+</div>
+ </div>
+</body>
+</html>
