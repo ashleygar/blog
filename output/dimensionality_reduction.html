@@ -14,8 +14,7 @@
  <div class="col-md-8">
   <h3>Dimensionality Reduction</h3>
   <label>2020-01-26</label>
-  <h2>Dimesionality Reduction</h2>
-<p>In the current data environment, there is a seemingly infinite amount of data available. It is encumbant on those analyzing data to decide which of the hundreds or thousands of variables are relevant, thereby avoiding a model that is overfitting with a high variance. However, if too many variables are eliminated, the model will be too simple and reflect high bias.</p>
+  <p>In the current data environment, there is a seemingly infinite amount of data available. It is encumbant on those analyzing data to decide which of the hundreds or thousands of variables are relevant, thereby avoiding a model that is overfitting with a high variance. However, if too many variables are eliminated, the model will be too simple and reflect high bias.</p>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Dimension_levels.svg/800px-Dimension_levels.svg.png" style="height: 175px"></p>
 <p>Image source: https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Dimension_levels.svg/800px-Dimension_levels.svg.png</p>
 <p>Not only is a high dimensional space difficult to conceptualize or visualize, regions in these spaces typically have vast volumes.</p>
@@ -56,13 +55,28 @@ Swiss roll flattened without (left) and with (right) manifold learning.
 </pre></div>
 
 
+<div class="highlight"><pre><span></span><span class="n">PCA</span><span class="p">(</span><span class="k">copy</span><span class="o">=</span><span class="k">True</span><span class="p">,</span> <span class="n">iterated_power</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="k">None</span><span class="p">,</span>
+    <span class="n">svd_solver</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span> <span class="n">whiten</span><span class="o">=</span><span class="k">False</span><span class="p">)</span>
+</pre></div>
+
+
 <p>The components attribute will display the principal components matrix.  These are the axes that represent the maximum variance in the data [4].</p>
 <div class="highlight"><pre><span></span><span class="n">pca</span><span class="o">.</span><span class="n">components_</span>
 </pre></div>
 
 
+<div class="highlight"><pre><span></span><span class="nb">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">.</span><span class="mi">36138659</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="p">.</span><span class="mi">08452251</span><span class="p">,</span>  <span class="mi">0</span><span class="p">.</span><span class="mi">85667061</span><span class="p">,</span>  <span class="mi">0</span><span class="p">.</span><span class="mi">3582892</span> <span class="p">],</span>
+       <span class="p">[</span> <span class="mi">0</span><span class="p">.</span><span class="mi">65658877</span><span class="p">,</span>  <span class="mi">0</span><span class="p">.</span><span class="mi">73016143</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="p">.</span><span class="mi">17337266</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="p">.</span><span class="mi">07548102</span><span class="p">],</span>
+       <span class="p">[</span><span class="o">-</span><span class="mi">0</span><span class="p">.</span><span class="mi">58202985</span><span class="p">,</span>  <span class="mi">0</span><span class="p">.</span><span class="mi">59791083</span><span class="p">,</span>  <span class="mi">0</span><span class="p">.</span><span class="mi">07623608</span><span class="p">,</span>  <span class="mi">0</span><span class="p">.</span><span class="mi">54583143</span><span class="p">]])</span>
+</pre></div>
+
+
 <p>The explained variance ratio sorts the components by the percentage of the variance explained [4].  In this example, the first component contains about 92% of the model's variance.  The second explains about 5% and the third explains about 2%.</p>
 <div class="highlight"><pre><span></span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="nb">array</span><span class="p">([</span><span class="mi">0</span><span class="p">.</span><span class="mi">92461872</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">05306648</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">01710261</span><span class="p">])</span>
 </pre></div>
 
 
