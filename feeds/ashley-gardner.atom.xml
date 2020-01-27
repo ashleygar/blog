@@ -1,5 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>blog - Ashley Gardner</title><link href="https://ashleygar.github.io/blog/" rel="alternate"></link><link href="https://ashleygar.github.io/blog/feeds/ashley-gardner.atom.xml" rel="self"></link><id>https://ashleygar.github.io/blog/</id><updated>2020-01-05T00:00:00-05:00</updated><entry><title>Altair</title><link href="https://ashleygar.github.io/blog/altair.html" rel="alternate"></link><published>2020-01-05T00:00:00-05:00</published><updated>2020-01-05T00:00:00-05:00</updated><author><name>Ashley Gardner</name></author><id>tag:ashleygar.github.io,2020-01-05:/blog/altair.html</id><summary type="html">&lt;p&gt;This blog will highlight a few line graphs that can be made using Altair - a library of vizualization tools for Python.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog - Ashley Gardner</title><link href="https://ashleygar.github.io/blog/" rel="alternate"></link><link href="https://ashleygar.github.io/blog/feeds/ashley-gardner.atom.xml" rel="self"></link><id>https://ashleygar.github.io/blog/</id><updated>2020-01-26T00:00:00-05:00</updated><entry><title>Dimensionality Reduction</title><link href="https://ashleygar.github.io/blog/dimensionality_reduction.html" rel="alternate"></link><published>2020-01-26T00:00:00-05:00</published><updated>2020-01-26T00:00:00-05:00</updated><author><name>Ashley Gardner</name></author><id>tag:ashleygar.github.io,2020-01-26:/blog/dimensionality_reduction.html</id><summary type="html">&lt;h2&gt;Dimesionality Reduction&lt;/h2&gt;
+&lt;p&gt;In the current data environment, there is a seemingly infinite amount of data available. It is encumbant on those analyzing data to decide which of the hundreds or thousands of variables are relevant, thereby avoiding a model that is overfitting with a high variance. However, if too many …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Dimesionality Reduction&lt;/h2&gt;
+&lt;p&gt;In the current data environment, there is a seemingly infinite amount of data available. It is encumbant on those analyzing data to decide which of the hundreds or thousands of variables are relevant, thereby avoiding a model that is overfitting with a high variance. However, if too many variables are eliminated, the model will be too simple and reflect high bias.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Dimension_levels.svg/800px-Dimension_levels.svg.png" style="height: 175px"&gt;&lt;/p&gt;
+&lt;p&gt;Image source: https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Dimension_levels.svg/800px-Dimension_levels.svg.png&lt;/p&gt;
+&lt;p&gt;Not only is a high dimensional space difficult to conceptualize or visualize, regions in these spaces typically have vast volumes.&lt;/p&gt;
+&lt;p&gt;Aurélien Géron summarizes one of the primary issues of high dimensionality in his book, &lt;em&gt;Hands-On Machine Learning with Scikit-Learn, Keras &amp;amp; TensorFlow&lt;/em&gt;. Imagine 2 points in a unit square. The distance between them is about 0.52. In 3-D, it increases to about 0.66.  In a 1,000,000-dimensional hypercube, it grows to almost 409.  Volumes in high dimensional spaces are huge, resulting in points being spread far apart. This means that not only will training data points inherently have large distances between one another, but that new data points will also be far from training points, making predicitons less accurate.  This is what is commonly framed as the "curse of dimensionality" [1].&lt;/p&gt;
+&lt;h3&gt;Mathematical Approaches to Dimensionality Reduction&lt;/h3&gt;
+&lt;p&gt;In dimensionality reduction, there are two mathematical approaches: projection and manifold learning.&lt;/p&gt;
+&lt;h4&gt;1. Projection&lt;/h4&gt;
+&lt;p&gt;Projection is when datapoints in a high-dimensional space are projected to a lower-dimensional subspace [1].  The 3-D datapoints are projected perpendicularly to the 2-D plane that best preserves the location of each point [1].  As a result, the relationship between the data point in the high dimensional space to the corresonding data point in the low dimensional space is linear.&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/3d_plot.jpg" style="height: 300px"/&gt;&lt;/p&gt;
+&lt;p&gt;Image source: https://github.com/ageron/handson-ml/blob/master/08_dimensionality_reduction.ipynb&lt;/p&gt;
+&lt;h4&gt;2. Manifold Learning&lt;/h4&gt;
+&lt;p&gt;Manifold learning entails modeling datapoints in a high dimensional space that can eventually be spread out to a low dimensional space while still preserving its local shape [1].  The relationship between the data point in the high dimensional space to the corresonding data point in the low dimensional space is nonlinear [2].  Think of it like projecting a globe on to an atlas.  Another example is the Swiss roll below.&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/swissroll.png" style="height: 300px"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;CENTER&gt;
+Swiss roll dataset
+&lt;CENTER&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/swissroll_flat1.png" style="height: 220px"/&gt;
+&lt;p&gt;&lt;p/&gt;
+Swiss roll flattened without (left) and with (right) manifold learning.
+&lt;p&gt;&lt;p/&gt;&lt;/p&gt;
+&lt;p&gt;Images source: https://github.com/ageron/handson-ml/blob/master/08_dimensionality_reduction.ipynb&lt;/p&gt;
+&lt;h3&gt;Methods for Dimensionality Reduction&lt;/h3&gt;
+&lt;p&gt;The methods to reduce dimensionality that this post will focus on are Principal Component Analysis (PCA) and t-Distributed Stochastic Neighbor Embedding (t-SNE).  They are projection and manifold learning methods, respectively.&lt;/p&gt;
+&lt;h4&gt;1. Principal Component Analysis (PCA)&lt;/h4&gt;
+&lt;p&gt;In PCA, an n number of principal components, or new axes, are created while preserving the most amount of variance [1].  The relationship between the original dataset and the new principal components is linear [3]. The mean square distance is minimized between the original data and the new axis [1]. Therefore, if there are outliers in the data, this may adversely influence the principal component by potentially creating unreliable principal components that are skewed towards the outliers, but not the rest of the datapoints - i.e. the mean square error will be compromised by the outlier data, but not effectively minimized for the rest of the data.&lt;/p&gt;
+&lt;p&gt;The following example will illustrate the use of PCA on the Iris dataset from sklearn.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.datasets&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;load_iris&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.decomposition&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;PCA&lt;/span&gt;
+
+&lt;span class="n"&gt;iris&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;load_iris&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;iris&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;iris&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;iris&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;feature_names&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;pca&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;PCA&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n_components&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;pca&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;iris&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Data source: https://scikit-learn.org/stable/auto_examples/decomposition/plot_pca_iris.html&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The components attribute will display the principal components matrix.  These are the axes that represent the maximum variance in the data [4].&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pca&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;components_&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The explained variance ratio sorts the components by the percentage of the variance explained [4].  In this example, the first component contains about 92% of the model's variance.  The second explains about 5% and the third explains about 2%.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pca&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;explained_variance_ratio_&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If the data were to be visualized, it would appear like the chart below.  The three flowers are well separated.&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/iris_pca.png" style="height: 500px"/&gt;&lt;/p&gt;
+&lt;p&gt;Image source: https://scikit-learn.org/stable/auto_examples/datasets/plot_iris_dataset.html&lt;/p&gt;
+&lt;p&gt;More information on using PCA with sklearn can be found here: https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html&lt;/p&gt;
+&lt;h4&gt;2. t-SNE&lt;/h4&gt;
+&lt;p&gt;t-SNE is a nonlinear dimensionality reduction technique used to reconstruct high dimensional data into a low dimensional space by keeping similar data points close together and dissimilar data points apart from one another in the low dimensional space [1].  It is especially effective at visualization as it captures the structure - both local and global - of the data at many different scales [5]. This contrasts with some methods that tend to crowd points together [5].&lt;/p&gt;
+&lt;p&gt;Each time the t-SNE equation is run, it generates new results since each run generates probabilities, not distances [7].  The solution ulimately selected will be that with the lowest Kullback-Leiber divergence - a cost method that rewards the preservation of the local structure [5] . In other words, when transforming the data from a high to low dimensionality space, mapping similar and dissimilar points close to and far from one another, respectively, is optimal.&lt;/p&gt;
+&lt;p&gt;While preparing to run t-SNE, it is recommended to first use another dimenionality reduction technique first that will bring the total number of dimensions to a more reasonable number first (e.g. 50) [6].  This will aid in reducing the time to run t-SNE given that it is a computationally heavy techique, though it may not lead to improved results - this depends on the data [1]. &lt;/p&gt;
+&lt;p&gt;Running t-SNE in sklearn is similar to other algorithms:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.manifold&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;TSNE&lt;/span&gt;
+&lt;span class="n"&gt;tsne&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;TSNE&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c1"&gt;# tsne.fit(data)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Parameters to be aware of while using t-SNE include: n_parameters and perplexity.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;n_parameters sets the dimension of the space and 2 is the default [6].  While this can be increased, it should be done with caution since one of the main objectives in t-SNE is to reduce the crowding problem, which arises when too many datapoints are forced into a small space [7]. Thus, when embedding into a somewhat higher dimension space, the overcrowding problem does not arise and t-SNE might not be the optimal technique. &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Perplexity is similar to the measure used in the nearest neighbors k in other manifold learning algorithms [7]. In general, a larger/denser dataset will require more perplexity and typical ranges are from 5 to 50 [7].&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As mentioned above, the Kullback-Leiber divergence is the attribute used to measure the performance of the alogorithm.  In sklearn, this attribute is the kl_divergence_ [6].&lt;/p&gt;
+&lt;p&gt;More information on using t-SNE in sklearn can be found here: https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html&lt;/p&gt;
+&lt;p&gt;Below is the t-SNE performance on the MNIST dataset.  At a glance, one can see that t-SNE performs well in separtating the digits.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://lvdmaaten.github.io/tsne/examples/mnist_tsne.jpg" style="height: 400px;"/&gt;&lt;/p&gt;
+&lt;p&gt;Image source: https://lvdmaaten.github.io/tsne/examples/mnist_tsne.jpg&lt;/p&gt;
+&lt;p&gt;Some applications of t-SNE include cancer search, music analysis, computer security resarch, and bioinformatics [8].&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Sources:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;[1] Géron, Aurélien. &lt;em&gt;Hands-On Machine Learning with Scikit-Learn, Keras &amp;amp; TensorFlow.&lt;/em&gt;  2nd ed., O'Reilly, 2019.&lt;/p&gt;
+&lt;p&gt;[2] https://scikit-learn.org/stable/modules/manifold.html&lt;/p&gt;
+&lt;p&gt;[3] https://en.wikipedia.org/wiki/Principal_component_analysis&lt;/p&gt;
+&lt;p&gt;[4] https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html&lt;/p&gt;
+&lt;p&gt;[5] van der Maaten, Laurens and Hinton, Geoffrey. &lt;em&gt;Visualizing ata using t-SNE.&lt;/em&gt; Journal of Machine Learning Research, November 2008, p.2579-2605.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Paper&lt;/span&gt; &lt;span class="n"&gt;can&lt;/span&gt; &lt;span class="n"&gt;also&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="k"&gt;found&lt;/span&gt; &lt;span class="k"&gt;at&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;lvdmaaten&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;publications&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;papers&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;JMLR_2008&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pdf&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;[6] https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html&lt;/p&gt;
+&lt;p&gt;[7] https://lvdmaaten.github.io/tsne/&lt;/p&gt;
+&lt;p&gt;[8] https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding&lt;/p&gt;</content><category term="misc"></category></entry><entry><title>Altair</title><link href="https://ashleygar.github.io/blog/altair.html" rel="alternate"></link><published>2020-01-05T00:00:00-05:00</published><updated>2020-01-05T00:00:00-05:00</updated><author><name>Ashley Gardner</name></author><id>tag:ashleygar.github.io,2020-01-05:/blog/altair.html</id><summary type="html">&lt;p&gt;This blog will highlight a few line graphs that can be made using Altair - a library of vizualization tools for Python.&lt;/p&gt;
 &lt;p&gt;Information regarding all aspects of Altair charts (types, customization, etc.) can be found here: https://altair-viz.github.io/index.html&lt;/p&gt;
 &lt;p&gt;The data set chosen for this blog is the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This blog will highlight a few line graphs that can be made using Altair - a library of vizualization tools for Python.&lt;/p&gt;
 &lt;p&gt;Information regarding all aspects of Altair charts (types, customization, etc.) can be found here: https://altair-viz.github.io/index.html&lt;/p&gt;
