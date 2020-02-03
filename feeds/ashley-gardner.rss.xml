@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>blog - Ashley Gardner</title><link>https://ashleygar.github.io/blog/</link><description></description><lastBuildDate>Mon, 03 Feb 2020 00:00:00 -0500</lastBuildDate><item><title>pdpipe: Pipelines for pandas DataFrames</title><link>https://ashleygar.github.io/blog/pdpipe.html</link><description>&lt;p&gt;The pdpipe Python package is a tool that enables users to build pandas pipelines.  The construction and application of a pipeline is similar that of the scikit-learn pipeline.&lt;/p&gt;
+<rss version="2.0"><channel><title>blog - Ashley Gardner</title><link>https://ashleygar.github.io/blog/</link><description></description><lastBuildDate>Mon, 03 Feb 2020 00:00:00 -0500</lastBuildDate><item><title>Pipelines for pandas DataFrames</title><link>https://ashleygar.github.io/blog/pdpipe.html</link><description>&lt;p&gt;The pdpipe Python package is a tool that enables users to build pandas pipelines.  The construction and application of a pipeline is similar that of the scikit-learn pipeline.&lt;/p&gt;
 &lt;p&gt;Package landing page: https://pdpipe.github.io/pdpipe/ &lt;br&gt;
 Package documentation: https://pdpipe.github.io/pdpipe/doc/pdpipe/&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Installation&lt;/strong&gt;&lt;/p&gt;
