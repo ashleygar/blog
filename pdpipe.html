@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <title>pdpipe: Pipelines for pandas DataFrames</title>
+ <!-- Latest compiled and minified CSS -->
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+ <div class="container">
+  <h1><a href=".">blog</a></h1>
+ </div>
+</head>
+<body>
+ <div class="container">
+<div class="row">
+ <div class="col-md-8">
+  <h3>pdpipe: Pipelines for pandas DataFrames</h3>
+  <label>2020-02-03</label>
+  <p>The pdpipe Python package is a tool that enables users to build pandas pipelines.  The construction and application of a pipeline is similar that of the scikit-learn pipeline.</p>
+<p>Package landing page: https://pdpipe.github.io/pdpipe/ <br>
+Package documentation: https://pdpipe.github.io/pdpipe/doc/pdpipe/</p>
+<p><strong>Installation</strong></p>
+<p>Pip install with the following:</p>
+<p><code>pip install pdpipe</code></p>
+<p><strong>Create Pipeline Stages</strong></p>
+<p>Once <code>pdpipe</code> is installed, set up the stages to be added to the pipeline.</p>
+<p>There are four general stages available:</p>
+<ol>
+<li>
+<p>Basic</p>
+<ul>
+<li>Classes include column drop, column rename, column reorder, etc.</li>
+</ul>
+</li>
+<li>
+<p>Column Generation </p>
+<ul>
+<li>Classes include applying a function to a column or row, binning a column, etc.</li>
+</ul>
+</li>
+<li>
+<p>Scikit-learn-dependent*</p>
+<ul>
+<li>Classes include Label Encoder, Scaler (i.e. StandardScaler, MinMaxScaler, etc.), and TFIDF-vectorizing a token-list column.</li>
+</ul>
+</li>
+<li>
+<p>nltk-dependent*</p>
+<ul>
+<li>Classes include dropping rare tokens, removing stop words, tokenizing text, etc.</li>
+</ul>
+</li>
+</ol>
+<p>*For stages that use scikit-learn or nltk, these packages must first be installed or a warning will appear.
+- scikit-learn installation: https://scikit-learn.org/stable/install.html
+- NLTK installation: http://www.nltk.org/install.html </p>
+<p><strong>Apply Pipeline Stages</strong></p>
+<p>Once the stages have been created, there is the option to immediately apply them.  Some options to apply stages include:</p>
+<p>1) Applying the stage directly<br></p>
+<p><code>df = pdp.ColRename({'blank':'number'}).apply(df)</code></p>
+<div class="highlight"><pre><span></span><span class="c1"># Example</span>
+
+<span class="c1"># pip install pdpipe</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pdpipe</span> <span class="kn">as</span> <span class="nn">pdp</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">27</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">40</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> 
+    <span class="p">[</span><span class="mi">32</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="p">],</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;first&#39;</span><span class="p">,</span> <span class="s1">&#39;second&#39;</span><span class="p">,</span> <span class="s1">&#39;third&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">df</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>first</th>
+      <th>second</th>
+      <th>third</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>8</td>
+      <td>a</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>10</td>
+      <td>b</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>27</td>
+      <td>c</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>40</td>
+      <td>b</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>32</td>
+      <td>a</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pdp</span><span class="o">.</span><span class="n">ColRename</span><span class="p">({</span><span class="s1">&#39;first&#39;</span><span class="p">:</span><span class="s1">&#39;number&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="n">df</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>number</th>
+      <th>second</th>
+      <th>third</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>8</td>
+      <td>a</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>10</td>
+      <td>b</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>27</td>
+      <td>c</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>40</td>
+      <td>b</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>32</td>
+      <td>a</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>2) Creating and calling the stage<br></p>
+<p><code>rename = pdp.ColRename({'first':'number'})</code><br>
+<code>df = rename(df)</code><br></p>
+<div class="highlight"><pre><span></span><span class="c1"># Example</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">27</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">40</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> 
+    <span class="p">[</span><span class="mi">32</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="p">],</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;first&#39;</span><span class="p">,</span> <span class="s1">&#39;second&#39;</span><span class="p">,</span> <span class="s1">&#39;third&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">df</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>first</th>
+      <th>second</th>
+      <th>third</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>8</td>
+      <td>a</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>10</td>
+      <td>b</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>27</td>
+      <td>c</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>40</td>
+      <td>b</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>32</td>
+      <td>a</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><span class="n">rename</span> <span class="o">=</span> <span class="n">pdp</span><span class="o">.</span><span class="n">ColRename</span><span class="p">({</span><span class="s1">&#39;first&#39;</span><span class="p">:</span><span class="s1">&#39;number&#39;</span><span class="p">})</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">rename</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>number</th>
+      <th>second</th>
+      <th>third</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>8</td>
+      <td>a</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>10</td>
+      <td>b</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>27</td>
+      <td>c</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>40</td>
+      <td>b</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>32</td>
+      <td>a</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>Create Pipeline</strong></p>
+<p>Once the stages have been created, some options to create a pipline include:</p>
+<ul>
+<li>
+<p>Creating a list of the stages<br>
+e.g.: <code>pipeline = pdp.PdPipeline([pdp.ColRename({'blank':'number'}), pdp.Encode('Category')])</code></p>
+</li>
+<li>
+<p>Using arithmetic to add stages<br>
+e.g.: <code>pipeline = pdp.ColRename({'blank':'number'}) + pdp.Encode('Category')</code></p>
+</li>
+<li>
+<p>Chaining the stages<br>
+e.g.: <code>pipeline = pdp.ColRename({'blank':'number'}).pdp.Encode('Category')</code>                          </p>
+</li>
+</ul>
+<p><strong>Fit Pipeline Stages</strong></p>
+<p>Similar <code>sklearn</code> transformer methods, such as <code>fit</code>, <code>fit_transform</code>, and <code>transform</code>, can be used with the pipeline.</p>
+<p><strong>Example</strong></p>
+<p>Below is a simple example of the full <code>pdpipe</code> process using the scikit-learn transformer methods.</p>
+<div class="highlight"><pre><span></span><span class="c1"># Import pandas and pdpipe</span>
+
+<span class="c1"># pip install pdpipe</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pdpipe</span> <span class="kn">as</span> <span class="nn">pdp</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">27</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">40</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> 
+    <span class="p">[</span><span class="mi">32</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="p">],</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;first&#39;</span><span class="p">,</span> <span class="s1">&#39;second&#39;</span><span class="p">,</span> <span class="s1">&#39;third&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">data</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>first</th>
+      <th>second</th>
+      <th>third</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>8</td>
+      <td>a</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>10</td>
+      <td>b</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>27</td>
+      <td>c</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>40</td>
+      <td>b</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>32</td>
+      <td>a</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><span class="c1"># Create stages</span>
+
+<span class="n">rename</span> <span class="o">=</span> <span class="n">pdp</span><span class="o">.</span><span class="n">ColRename</span><span class="p">({</span><span class="s1">&#39;first&#39;</span><span class="p">:</span><span class="s1">&#39;number&#39;</span><span class="p">})</span>
+<span class="n">encode</span> <span class="o">=</span> <span class="n">pdp</span><span class="o">.</span><span class="n">Encode</span><span class="p">(</span><span class="s1">&#39;second&#39;</span><span class="p">)</span>
+
+
+<span class="c1">#Create Pipeline</span>
+
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">pdp</span><span class="o">.</span><span class="n">ColRename</span><span class="p">({</span><span class="s1">&#39;first&#39;</span><span class="p">:</span><span class="s1">&#39;number&#39;</span><span class="p">})</span> <span class="o">+</span> <span class="n">pdp</span><span class="o">.</span><span class="n">Encode</span><span class="p">(</span><span class="s1">&#39;second&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># Fit and transform pipeline to data</span>
+
+<span class="n">pipeline</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>number</th>
+      <th>second</th>
+      <th>third</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>8</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>10</td>
+      <td>1</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>27</td>
+      <td>2</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>40</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>32</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><span class="c1"># New data</span>
+
+<span class="n">data_new</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="mi">34</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">11</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span> 
+    <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="p">],</span> 
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;first&#39;</span><span class="p">,</span> <span class="s1">&#39;second&#39;</span><span class="p">,</span> <span class="s1">&#39;third&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">data_new</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>first</th>
+      <th>second</th>
+      <th>third</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>3</td>
+      <td>b</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>c</td>
+      <td>34</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>6</td>
+      <td>a</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>9</td>
+      <td>a</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>7</td>
+      <td>c</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><span class="c1"># Transform the new data using the existing pipeline</span>
+
+<span class="n">pipeline</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data_new</span><span class="p">)</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>number</th>
+      <th>second</th>
+      <th>third</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>3</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>34</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>6</td>
+      <td>0</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>9</td>
+      <td>0</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>7</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>There are additional sub-modules, pipeline stages, and package features on the package documentation website cited below.</p>
+<p>Source for post content:</p>
+<ul>
+<li>Package documentation: https://pdpipe.github.io/pdpipe/doc/pdpipe/</li>
+</ul>
+ </div>
+</div>
+ </div>
+</body>
+</html>
