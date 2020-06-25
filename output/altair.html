@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <title>Altair</title>
+ <title>Altair for IMO Performance</title>
  <!-- Latest compiled and minified CSS -->
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
  <div class="container">
@@ -12,7 +12,7 @@
  <div class="container">
 <div class="row">
  <div class="col-md-8">
-  <h3>Altair</h3>
+  <h3>Altair for IMO Performance</h3>
   <label>2020-01-05</label>
   <p>This blog will highlight a few line graphs that can be made using Altair - a library of vizualization tools for Python.</p>
 <p>Information regarding all aspects of Altair charts (types, customization, etc.) can be found here: https://altair-viz.github.io/index.html</p>
@@ -21,7 +21,7 @@
 <p>More infomation about the IMO rules are provided here:
 https://www.imo-official.org/documents/RegulationsIMO.pdf</p>
 <p>More infromation about the competition can be found on its general website:
-https://www.imo-official.org/ </p>
+https://www.imo-official.org/</p>
 <div class="highlight"><pre><span></span><span class="c1"># Import data.</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
@@ -756,7 +756,7 @@ v2. Top 5 or top 10 countries with the highest total team score in 2017.</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="c1"># Source to code that resolved issue: </span>
+<div class="highlight"><pre><span></span><span class="c1"># Source to code that resolved issue:</span>
     <span class="c1"># https://stackoverflow.com/questions/18624039/pandas-reset-index-on-series-to-remove-multiindex</span>
 
 <span class="n">country_chart5</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -955,7 +955,7 @@ v2. Top 5 or top 10 countries with the highest total team score in 2017.</p>
 </div>
 
 <div class="highlight"><pre><span></span><span class="c1"># Same multi-index issue and resolution as above.</span>
-<span class="c1"># Source to code that resolved issue: </span>
+<span class="c1"># Source to code that resolved issue:</span>
     <span class="c1"># https://stackoverflow.com/questions/18624039/pandas-reset-index-on-series-to-remove-multiindex</span>
 
 <span class="n">country_chart10</span><span class="o">.</span><span class="n">index</span>
@@ -1152,7 +1152,7 @@ v2. Top 5 or top 10 countries with the highest total team score in 2017.</p>
 </div>
 
 <div class="highlight"><pre><span></span><span class="c1"># Same multi-index issue and resolution as above.</span>
-<span class="c1"># Source to code that resolved issue: </span>
+<span class="c1"># Source to code that resolved issue:</span>
     <span class="c1"># https://stackoverflow.com/questions/18624039/pandas-reset-index-on-series-to-remove-multiindex</span>
 
 <span class="n">country_chart5_2017</span><span class="o">.</span><span class="n">index</span>
@@ -1351,7 +1351,7 @@ v2. Top 5 or top 10 countries with the highest total team score in 2017.</p>
 </div>
 
 <div class="highlight"><pre><span></span><span class="c1"># Same multi-index issue and resolution as above.</span>
-<span class="c1"># Source to code that resolved issue: </span>
+<span class="c1"># Source to code that resolved issue:</span>
     <span class="c1"># https://stackoverflow.com/questions/18624039/pandas-reset-index-on-series-to-remove-multiindex</span>
 
 <span class="n">country_chart10_2017</span><span class="o">.</span><span class="n">index</span>
@@ -1425,10 +1425,10 @@ v2. Top 5 or top 10 countries with the highest total team score in 2017.</p>
 <p>All charts include a chart title and axis titles.</p>
 <div class="highlight"><pre><span></span><span class="c1"># Chart 1 : Multi Series Line Chart (v1 data with Top 5 countries placing in top 10 from 1984-2017)</span>
 
-<span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">country_chart5</span><span class="p">,</span> 
+<span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">country_chart5</span><span class="p">,</span>
           <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Top Five Countries by Historical Performance at the IMO from 1984-2017&quot;</span>
          <span class="p">)</span><span class="o">.</span><span class="n">mark_line</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s1">&#39;year:O&#39;</span><span class="p">,</span> 
+    <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s1">&#39;year:O&#39;</span><span class="p">,</span>
             <span class="n">axis</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">)),</span>
     <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">,</span>
             <span class="n">axis</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Team score&#39;</span><span class="p">)),</span>
@@ -1509,10 +1509,10 @@ v2. Top 5 or top 10 countries with the highest total team score in 2017.</p>
 
 <div class="highlight"><pre><span></span><span class="c1"># Chart 2 - Multi Series Line Chart (v2 data with Top 5 countries in 2017)</span>
 
-<span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">country_chart5_2017</span><span class="p">,</span> 
+<span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">country_chart5_2017</span><span class="p">,</span>
           <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Top Five Countries from the 2017 IMO&quot;</span>
          <span class="p">)</span><span class="o">.</span><span class="n">mark_line</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s1">&#39;year:O&#39;</span><span class="p">,</span> 
+    <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s1">&#39;year:O&#39;</span><span class="p">,</span>
             <span class="n">axis</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">)),</span>
     <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">,</span>
             <span class="n">axis</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Team score&#39;</span><span class="p">)),</span>
@@ -1598,10 +1598,10 @@ v2. Top 5 or top 10 countries with the highest total team score in 2017.</p>
 <span class="n">highlight</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;single&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;mouseover&#39;</span><span class="p">,</span>
                           <span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">],</span> <span class="n">nearest</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-<span class="n">base</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> 
+<span class="n">base</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">source</span><span class="p">,</span>
                  <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Top Five Countries by Historical Performance at the IMO from 1984-2017&quot;</span>
                 <span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s1">&#39;year:O&#39;</span><span class="p">,</span> 
+    <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s1">&#39;year:O&#39;</span><span class="p">,</span>
             <span class="n">axis</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">)),</span>
     <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">,</span>
             <span class="n">axis</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Team score&#39;</span><span class="p">)),</span>
@@ -1683,9 +1683,9 @@ v2. Top 5 or top 10 countries with the highest total team score in 2017.</p>
 <span class="n">highlight</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;single&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;mouseover&#39;</span><span class="p">,</span>
                           <span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">],</span> <span class="n">nearest</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-<span class="n">base</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> 
+<span class="n">base</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">source</span><span class="p">,</span>
                  <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Top Five Countries from the 2017 IMO&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s1">&#39;year:O&#39;</span><span class="p">,</span> 
+    <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s1">&#39;year:O&#39;</span><span class="p">,</span>
             <span class="n">axis</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">)),</span>
     <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">,</span>
             <span class="n">axis</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Team score&#39;</span><span class="p">)),</span>
@@ -1760,11 +1760,11 @@ v2. Top 5 or top 10 countries with the highest total team score in 2017.</p>
   })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "layer": [{"mark": "circle", "encoding": {"color": {"type": "nominal", "field": "country"}, "opacity": {"value": 0}, "x": {"type": "ordinal", "axis": {"title": "Year"}, "field": "year"}, "y": {"type": "quantitative", "axis": {"title": "Team score"}, "field": "total"}}, "height": 500, "selection": {"selector002": {"type": "single", "on": "mouseover", "fields": ["country"], "nearest": true}}, "title": "Top Five Countries from the 2017 IMO", "width": 800}, {"mark": "line", "encoding": {"color": {"type": "nominal", "field": "country"}, "size": {"condition": {"value": 1, "selection": {"not": "selector002"}}, "value": 3}, "x": {"type": "ordinal", "axis": {"title": "Year"}, "field": "year"}, "y": {"type": "quantitative", "axis": {"title": "Team score"}, "field": "total"}}, "title": "Top Five Countries from the 2017 IMO"}], "data": {"name": "data-2ba359e24e11bbf1be26a3db2b17637a"}, "$schema": "https://vega.github.io/schema/vega-lite/v4.0.0.json", "datasets": {"data-2ba359e24e11bbf1be26a3db2b17637a": [{"year": 1984, "country": "ROU", "total": 199}, {"year": 1984, "country": "USA", "total": 195}, {"year": 1984, "country": "VNM", "total": 162}, {"year": 1985, "country": "CHN", "total": 26}, {"year": 1985, "country": "ROU", "total": 201}, {"year": 1985, "country": "USA", "total": 180}, {"year": 1985, "country": "VNM", "total": 144}, {"year": 1986, "country": "CHN", "total": 177}, {"year": 1986, "country": "ROU", "total": 171}, {"year": 1986, "country": "USA", "total": 203}, {"year": 1986, "country": "VNM", "total": 146}, {"year": 1987, "country": "CHN", "total": 200}, {"year": 1987, "country": "ROU", "total": 250}, {"year": 1987, "country": "USA", "total": 220}, {"year": 1987, "country": "VNM", "total": 172}, {"year": 1988, "country": "CHN", "total": 201}, {"year": 1988, "country": "ROU", "total": 201}, {"year": 1988, "country": "USA", "total": 153}, {"year": 1988, "country": "VNM", "total": 166}, {"year": 1989, "country": "CHN", "total": 237}, {"year": 1989, "country": "ROU", "total": 223}, {"year": 1989, "country": "USA", "total": 207}, {"year": 1989, "country": "VNM", "total": 183}, {"year": 1990, "country": "CHN", "total": 230}, {"year": 1990, "country": "ROU", "total": 171}, {"year": 1990, "country": "USA", "total": 174}, {"year": 1990, "country": "VNM", "total": 104}, {"year": 1991, "country": "CHN", "total": 231}, {"year": 1991, "country": "ROU", "total": 225}, {"year": 1991, "country": "USA", "total": 212}, {"year": 1991, "country": "VNM", "total": 191}, {"year": 1992, "country": "CHN", "total": 240}, {"year": 1992, "country": "ROU", "total": 177}, {"year": 1992, "country": "RUS", "total": 158}, {"year": 1992, "country": "USA", "total": 181}, {"year": 1992, "country": "VNM", "total": 139}, {"year": 1993, "country": "CHN", "total": 215}, {"year": 1993, "country": "ROU", "total": 128}, {"year": 1993, "country": "RUS", "total": 177}, {"year": 1993, "country": "USA", "total": 151}, {"year": 1993, "country": "VNM", "total": 138}, {"year": 1994, "country": "CHN", "total": 229}, {"year": 1994, "country": "ROU", "total": 198}, {"year": 1994, "country": "RUS", "total": 224}, {"year": 1994, "country": "USA", "total": 252}, {"year": 1994, "country": "VNM", "total": 207}, {"year": 1995, "country": "CHN", "total": 236}, {"year": 1995, "country": "ROU", "total": 230}, {"year": 1995, "country": "RUS", "total": 227}, {"year": 1995, "country": "USA", "total": 178}, {"year": 1995, "country": "VNM", "total": 220}, {"year": 1996, "country": "CHN", "total": 160}, {"year": 1996, "country": "ROU", "total": 187}, {"year": 1996, "country": "RUS", "total": 162}, {"year": 1996, "country": "USA", "total": 185}, {"year": 1996, "country": "VNM", "total": 155}, {"year": 1997, "country": "CHN", "total": 223}, {"year": 1997, "country": "ROU", "total": 191}, {"year": 1997, "country": "RUS", "total": 202}, {"year": 1997, "country": "USA", "total": 202}, {"year": 1997, "country": "VNM", "total": 183}, {"year": 1998, "country": "ROU", "total": 155}, {"year": 1998, "country": "RUS", "total": 175}, {"year": 1998, "country": "USA", "total": 186}, {"year": 1998, "country": "VNM", "total": 158}, {"year": 1999, "country": "CHN", "total": 182}, {"year": 1999, "country": "ROU", "total": 173}, {"year": 1999, "country": "RUS", "total": 182}, {"year": 1999, "country": "USA", "total": 150}, {"year": 1999, "country": "VNM", "total": 177}, {"year": 2000, "country": "CHN", "total": 218}, {"year": 2000, "country": "ROU", "total": 139}, {"year": 2000, "country": "RUS", "total": 215}, {"year": 2000, "country": "USA", "total": 184}, {"year": 2000, "country": "VNM", "total": 169}, {"year": 2001, "country": "CHN", "total": 225}, {"year": 2001, "country": "ROU", "total": 129}, {"year": 2001, "country": "RUS", "total": 196}, {"year": 2001, "country": "USA", "total": 196}, {"year": 2001, "country": "VNM", "total": 139}, {"year": 2002, "country": "CHN", "total": 212}, {"year": 2002, "country": "ROU", "total": 157}, {"year": 2002, "country": "RUS", "total": 204}, {"year": 2002, "country": "USA", "total": 171}, {"year": 2002, "country": "VNM", "total": 166}, {"year": 2003, "country": "CHN", "total": 211}, {"year": 2003, "country": "ROU", "total": 143}, {"year": 2003, "country": "RUS", "total": 167}, {"year": 2003, "country": "USA", "total": 188}, {"year": 2003, "country": "VNM", "total": 172}, {"year": 2004, "country": "CHN", "total": 220}, {"year": 2004, "country": "ROU", "total": 176}, {"year": 2004, "country": "RUS", "total": 205}, {"year": 2004, "country": "USA", "total": 212}, {"year": 2004, "country": "VNM", "total": 196}, {"year": 2005, "country": "CHN", "total": 235}, {"year": 2005, "country": "ROU", "total": 191}, {"year": 2005, "country": "RUS", "total": 212}, {"year": 2005, "country": "USA", "total": 213}, {"year": 2005, "country": "VNM", "total": 143}, {"year": 2006, "country": "CHN", "total": 214}, {"year": 2006, "country": "ROU", "total": 152}, {"year": 2006, "country": "RUS", "total": 174}, {"year": 2006, "country": "USA", "total": 154}, {"year": 2006, "country": "VNM", "total": 131}, {"year": 2007, "country": "CHN", "total": 181}, {"year": 2007, "country": "ROU", "total": 146}, {"year": 2007, "country": "RUS", "total": 184}, {"year": 2007, "country": "USA", "total": 155}, {"year": 2007, "country": "VNM", "total": 168}, {"year": 2008, "country": "CHN", "total": 217}, {"year": 2008, "country": "ROU", "total": 141}, {"year": 2008, "country": "RUS", "total": 199}, {"year": 2008, "country": "USA", "total": 190}, {"year": 2008, "country": "VNM", "total": 159}, {"year": 2009, "country": "CHN", "total": 221}, {"year": 2009, "country": "ROU", "total": 163}, {"year": 2009, "country": "RUS", "total": 203}, {"year": 2009, "country": "USA", "total": 182}, {"year": 2009, "country": "VNM", "total": 161}, {"year": 2010, "country": "CHN", "total": 197}, {"year": 2010, "country": "ROU", "total": 127}, {"year": 2010, "country": "RUS", "total": 169}, {"year": 2010, "country": "USA", "total": 168}, {"year": 2010, "country": "VNM", "total": 133}, {"year": 2011, "country": "CHN", "total": 189}, {"year": 2011, "country": "ROU", "total": 154}, {"year": 2011, "country": "RUS", "total": 161}, {"year": 2011, "country": "USA", "total": 184}, {"year": 2011, "country": "VNM", "total": 113}, {"year": 2012, "country": "CHN", "total": 195}, {"year": 2012, "country": "ROU", "total": 144}, {"year": 2012, "country": "RUS", "total": 177}, {"year": 2012, "country": "USA", "total": 194}, {"year": 2012, "country": "VNM", "total": 148}, {"year": 2013, "country": "CHN", "total": 208}, {"year": 2013, "country": "ROU", "total": 134}, {"year": 2013, "country": "RUS", "total": 187}, {"year": 2013, "country": "USA", "total": 190}, {"year": 2013, "country": "VNM", "total": 180}, {"year": 2014, "country": "CHN", "total": 201}, {"year": 2014, "country": "ROU", "total": 156}, {"year": 2014, "country": "RUS", "total": 191}, {"year": 2014, "country": "USA", "total": 193}, {"year": 2014, "country": "VNM", "total": 157}, {"year": 2015, "country": "CHN", "total": 181}, {"year": 2015, "country": "ROU", "total": 132}, {"year": 2015, "country": "RUS", "total": 141}, {"year": 2015, "country": "USA", "total": 185}, {"year": 2015, "country": "VNM", "total": 151}, {"year": 2016, "country": "CHN", "total": 204}, {"year": 2016, "country": "ROU", "total": 130}, {"year": 2016, "country": "RUS", "total": 165}, {"year": 2016, "country": "USA", "total": 214}, {"year": 2016, "country": "VNM", "total": 151}, {"year": 2017, "country": "CHN", "total": 159}, {"year": 2017, "country": "ROU", "total": 115}, {"year": 2017, "country": "RUS", "total": 128}, {"year": 2017, "country": "USA", "total": 148}, {"year": 2017, "country": "VNM", "total": 155}]}}, {"mode": "vega-lite"});
 </script>
 
-<div class="highlight"><pre><span></span><span class="c1"># Chart 5: Multi Series Line Chart - adjusting axis with clamp </span>
+<div class="highlight"><pre><span></span><span class="c1"># Chart 5: Multi Series Line Chart - adjusting axis with clamp</span>
     <span class="c1"># (v1 chart with Top 10 countries placing in top 10 from 1984-2017)</span>
 
 
-<span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">country_chart10</span><span class="p">,</span> 
+<span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">country_chart10</span><span class="p">,</span>
           <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Top Ten Countries by Historical Performance at the IMO from 1984-2017&quot;</span>
          <span class="p">)</span><span class="o">.</span><span class="n">mark_line</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
     <span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">,</span>
@@ -1851,7 +1851,7 @@ v2. Top 5 or top 10 countries with the highest total team score in 2017.</p>
     <span class="c1"># (v2 chart with Top 10 countries in 2017)</span>
 
 
-<span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">country_chart10_2017</span><span class="p">,</span> 
+<span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">country_chart10_2017</span><span class="p">,</span>
           <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Top Ten Countries from the 2017 IMO&quot;</span>
          <span class="p">)</span><span class="o">.</span><span class="n">mark_line</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
     <span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">,</span>
@@ -1941,10 +1941,10 @@ v2. Top 5 or top 10 countries with the highest total team score in 2017.</p>
                         <span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span> <span class="n">empty</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 
 <span class="c1"># Line chart</span>
-<span class="n">line</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">country_chart5</span><span class="p">,</span> 
+<span class="n">line</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">country_chart5</span><span class="p">,</span>
                  <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Top Five Countries by Historical Performance at the IMO from 1984-2017&quot;</span>
                 <span class="p">)</span><span class="o">.</span><span class="n">mark_line</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s1">&#39;year:O&#39;</span><span class="p">,</span> 
+    <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s1">&#39;year:O&#39;</span><span class="p">,</span>
             <span class="n">axis</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">)),</span>
     <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">,</span>
             <span class="n">axis</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Team score&#39;</span><span class="p">)),</span>
@@ -2044,10 +2044,10 @@ v2. Top 5 or top 10 countries with the highest total team score in 2017.</p>
                         <span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span> <span class="n">empty</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 
 <span class="c1"># Line chart</span>
-<span class="n">line</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">country_chart5_2017</span><span class="p">,</span> 
+<span class="n">line</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">country_chart5_2017</span><span class="p">,</span>
                  <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Top Five Countries from the 2017 IMO&#39;</span>
                 <span class="p">)</span><span class="o">.</span><span class="n">mark_line</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s1">&#39;year:O&#39;</span><span class="p">,</span> 
+    <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s1">&#39;year:O&#39;</span><span class="p">,</span>
             <span class="n">axis</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">)),</span>
     <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">,</span>
             <span class="n">axis</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Axis</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Team score&#39;</span><span class="p">)),</span>
