@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <title>Arrays</title>
+ <title>Working with Multi-dimensional Arrays in NumPy</title>
  <!-- Latest compiled and minified CSS -->
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
  <div class="container">
@@ -12,7 +12,7 @@
  <div class="container">
 <div class="row">
  <div class="col-md-8">
-  <h3>Arrays</h3>
+  <h3>Working with Multi-dimensional Arrays in NumPy</h3>
   <label>2019-12-06</label>
   <p>An array is an object that contains objects of the same type; while lists can hold objects of varying types, arrays cannot [1].</p>
 <p>This post will provide some basic information about arrays related to their shape and dimensionality.</p>
@@ -140,7 +140,7 @@
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="c1"># Indexing each row will print a 1D array from each row. </span>
+<div class="highlight"><pre><span></span><span class="c1"># Indexing each row will print a 1D array from each row.</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
@@ -338,7 +338,7 @@
     <span class="mi">461</span>         <span class="nv">n_jobs_</span> <span class="o">=</span> <span class="nv">self</span>.<span class="nv">n_jobs</span>
     <span class="mi">462</span>         <span class="nv">X</span>, <span class="nv">y</span> <span class="o">=</span> <span class="nv">check_X_y</span><span class="ss">(</span><span class="nv">X</span>, <span class="nv">y</span>, <span class="nv">accept_sparse</span><span class="o">=</span>[<span class="s1">&#39;</span><span class="s">csr</span><span class="s1">&#39;</span>, <span class="s1">&#39;</span><span class="s">csc</span><span class="s1">&#39;</span>, <span class="s1">&#39;</span><span class="s">coo</span><span class="s1">&#39;</span>],
 <span class="o">--&gt;</span> <span class="mi">463</span>                          <span class="nv">y_numeric</span><span class="o">=</span><span class="nv">True</span>, <span class="nv">multi_output</span><span class="o">=</span><span class="nv">True</span><span class="ss">)</span>
-    <span class="mi">464</span> 
+    <span class="mi">464</span>
     <span class="mi">465</span>         <span class="k">if</span> <span class="nv">sample_weight</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">None</span> <span class="nv">and</span> <span class="nv">np</span>.<span class="nv">atleast_1d</span><span class="ss">(</span><span class="nv">sample_weight</span><span class="ss">)</span>.<span class="nv">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span>:
 
 
@@ -354,7 +354,7 @@
     <span class="mi">519</span>                     <span class="s2">&quot;</span><span class="s">Reshape your data either using array.reshape(-1, 1) if </span><span class="s2">&quot;</span>
     <span class="mi">520</span>                     <span class="s2">&quot;</span><span class="s">your data has a single feature or array.reshape(1, -1) </span><span class="s2">&quot;</span>
 <span class="o">--&gt;</span> <span class="mi">521</span>                     <span class="s2">&quot;</span><span class="s">if it contains a single sample.</span><span class="s2">&quot;</span>.<span class="nv">format</span><span class="ss">(</span><span class="nv">array</span><span class="ss">))</span>
-    <span class="mi">522</span> 
+    <span class="mi">522</span>
     <span class="mi">523</span>         # <span class="nv">in</span> <span class="nv">the</span> <span class="nv">future</span> <span class="nv">np</span>.<span class="nv">flexible</span> <span class="nv">dtypes</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">handled</span> <span class="nv">like</span> <span class="nv">object</span> <span class="nv">dtypes</span>
 
 
@@ -372,7 +372,7 @@
 </pre></div>
 
 
-<p>Option 2: </p>
+<p>Option 2:</p>
 <div class="highlight"><pre><span></span><span class="n">model</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
 
@@ -397,7 +397,7 @@
 <p>Sources:
 [1] https://docs.python.org/3/library/array.html
 [2] https://docs.scipy.org/doc/numpy/user/quickstart.html
-[3] https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html </p>
+[3] https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html</p>
  </div>
 </div>
  </div>
