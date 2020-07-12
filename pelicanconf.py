@@ -13,4 +13,4 @@ DEFAULT_LANG = 'en'
 DEFAULT_PAGINATION = 10
 RELATIVE_URLS = True
 
-THEME = 'Users/ashley-katherinegardner/pelican-alchemy/alchemy'
+THEME = '/User/ashley-katherinegardner/pelican-alchemy/alchemy'
