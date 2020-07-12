@@ -1,2 +1,2 @@
-# Data by day
+# Ashley's Data Blog
 ### by: Ashley Gardner
