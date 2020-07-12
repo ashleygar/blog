@@ -13,4 +13,4 @@ DEFAULT_LANG = 'en'
 DEFAULT_PAGINATION = 10
 RELATIVE_URLS = True
 
-THEME = 'themes/pelican-alchemy/alchemy'
+# THEME = 'themes/pelican-alchemy/alchemy'
