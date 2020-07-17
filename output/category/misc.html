@@ -1,91 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>Ashley's Data Blog - misc category</title>
-        <meta charset="utf-8" />
-        <link href="https://ashleygar.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Ashley's Data Blog Full Atom Feed" />
-        <link href="https://ashleygar.github.io/blog/feeds/misc.atom.xml" type="application/atom+xml" rel="alternate" title="Ashley's Data Blog Categories Atom Feed" />
+ <title>Ashley's Data Blog - misc category</title>
+ <!-- Latest compiled and minified CSS -->
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+ <div class="container">
+  <h1><a href="..">Ashley's Data Blog</a></h1>
+ </div>
 </head>
-
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="../">Ashley's Data Blog <strong></strong></a></h1>
-        </header><!-- /#banner -->
-        <nav id="menu"><ul>
-            <li class="active"><a href="../category/misc.html">misc</a></li>
-        </ul></nav><!-- /#menu -->
-<section id="content">
-<h2>Articles in the misc category</h2>
-
-<ol id="post-list">
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="../capstone.html" rel="bookmark" title="Permalink to Business Predictor">Business Predictor</a></h2> </header>
-                <footer class="post-info">
-                    <time class="published" datetime="2020-02-20T00:00:00-05:00"> Thu 20 February 2020 </time>
-                    <address class="vcard author">By
-                        <a class="url fn" href="../author/ashley-gardner.html">Ashley Gardner</a>
-                    </address>
-                </footer><!-- /.post-info -->
-                <div class="entry-content"> <p>This project uses Chicago business data obtained from the City of Chicago website (updated by the website and downloaded for this project on February 10, 2020).  Each entry in the dataset is a unique license issued, renewed, cancelled, etc. for a respective business.</p>
-<p>The project set out to measure the …</p> </div><!-- /.entry-content -->
-        </article></li>
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="../pdpipe.html" rel="bookmark" title="Permalink to Pipelines for pandas DataFrames">Pipelines for pandas DataFrames</a></h2> </header>
-                <footer class="post-info">
-                    <time class="published" datetime="2020-02-03T00:00:00-05:00"> Mon 03 February 2020 </time>
-                    <address class="vcard author">By
-                        <a class="url fn" href="../author/ashley-gardner.html">Ashley Gardner</a>
-                    </address>
-                </footer><!-- /.post-info -->
-                <div class="entry-content"> <p>The pdpipe Python package is a tool that enables users to build pandas pipelines.  The construction and application of a pipeline is similar that of the scikit-learn pipeline.</p>
-<p>Package landing page: https://pdpipe.github.io/pdpipe/ <br>
-Package documentation: https://pdpipe.github.io/pdpipe/doc/pdpipe/</p>
-<p><strong>Installation</strong></p>
-<p>Pip install with the …</p> </div><!-- /.entry-content -->
-        </article></li>
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="../dimensionality_reduction.html" rel="bookmark" title="Permalink to Dimensionality Reduction">Dimensionality Reduction</a></h2> </header>
-                <footer class="post-info">
-                    <time class="published" datetime="2020-01-26T00:00:00-05:00"> Sun 26 January 2020 </time>
-                    <address class="vcard author">By
-                        <a class="url fn" href="../author/ashley-gardner.html">Ashley Gardner</a>
-                    </address>
-                </footer><!-- /.post-info -->
-                <div class="entry-content"> <p>In the current data environment, there is a seemingly infinite amount of data available. It is encumbant on those analyzing data to decide which of the hundreds or thousands of variables are relevant, thereby avoiding a model that is overfitting with a high variance. However, if too many variables are …</p> </div><!-- /.entry-content -->
-        </article></li>
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="../altair.html" rel="bookmark" title="Permalink to Altair for IMO Performance">Altair for IMO Performance</a></h2> </header>
-                <footer class="post-info">
-                    <time class="published" datetime="2020-01-05T00:00:00-05:00"> Sun 05 January 2020 </time>
-                    <address class="vcard author">By
-                        <a class="url fn" href="../author/ashley-gardner.html">Ashley Gardner</a>
-                    </address>
-                </footer><!-- /.post-info -->
-                <div class="entry-content"> <p>This blog will highlight a few line graphs that can be made using Altair - a library of vizualization tools for Python.</p>
-<p>Information regarding all aspects of Altair charts (types, customization, etc.) can be found here: https://altair-viz.github.io/index.html</p>
-<p>The data set chosen for this blog is the …</p> </div><!-- /.entry-content -->
-        </article></li>
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="../arrays.html" rel="bookmark" title="Permalink to Working with Multi-dimensional Arrays in NumPy">Working with Multi-dimensional Arrays in NumPy</a></h2> </header>
-                <footer class="post-info">
-                    <time class="published" datetime="2019-12-06T11:30:00-05:00"> Fri 06 December 2019 </time>
-                    <address class="vcard author">By
-                        <a class="url fn" href="../author/ashley-gardner.html">Ashley Gardner</a>
-                    </address>
-                </footer><!-- /.post-info -->
-                <div class="entry-content"> <p>An array is an object that contains objects of the same type; while lists can hold objects of varying types, arrays cannot [1].</p>
-<p>This post will provide some basic information about arrays related to their shape and dimensionality.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import …</span></pre></div> </div><!-- /.entry-content -->
-        </article></li>
-</ol><!-- /#posts-list -->
-</section><!-- /#content -->
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
-                which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-        </footer><!-- /#contentinfo -->
+<body>
+ <div class="container">
+<div class="row">
+ <div class="col-md-8">
+   <h3><a href="../capstone.html">Business Predictor</a></h3>
+   <label>2020-02-20</label>
+   <h3><a href="../pdpipe.html">Pipelines for pandas DataFrames</a></h3>
+   <label>2020-02-03</label>
+   <h3><a href="../dimensionality_reduction.html">Dimensionality Reduction</a></h3>
+   <label>2020-01-26</label>
+   <h3><a href="../altair.html">Altair for IMO Performance</a></h3>
+   <label>2020-01-05</label>
+   <h3><a href="../arrays.html">Working with Multi-dimensional Arrays in NumPy</a></h3>
+   <label>2019-12-06</label>
+ </div>
+</div>
+ </div>
 </body>
 </html>
